@@ -34,7 +34,6 @@ Sugar Heart started as a personal recreation of the anime's heart pendant and gr
 - AWS Lambda on Node.js
 - Amazon Bedrock, using Nova Micro for diary emotion classification
 
-
 ## Architecture
 
 ```text
@@ -58,10 +57,10 @@ React + Vite client
               |-- Amazon Bedrock Nova Micro
 ```
 
-
 ## Major Features
 
 ### 3D Heart Pendant
+
 ![녹화_2026_04_09_22_38_56_897](https://github.com/user-attachments/assets/644d1f51-f8a3-4efd-9c9d-e2b1e1d9d3ed)
 <img width="1484" height="868" alt="image" src="https://github.com/user-attachments/assets/be1104be-d89a-46d7-8fc3-9655725d4093" />
 
@@ -80,6 +79,7 @@ The main screen is built around a custom heart pendant from Sugar Sugar Rune ren
 ### Gesture and Spell Unlock
 
 ![Sugar Heart preview](/public/images/spell.png)
+![Sugar Heart preview](/public/images/record.gif)
 
 **Stack:** MediaPipe Tasks Vision, Web Speech API, Canvas 2D, React hooks
 
@@ -133,16 +133,16 @@ When a diary entry is saved, the app classifies its dominant emotion into one pr
 
 Each emotional category maps to a collectible heart color and an Ecru value.
 
-| Heart | Emotion | Ecru |
-| --- | --- | ---: |
-| ❤️ | Love | 5000 |
-| 🩷 | Affection | 1000 |
-| 💛 | Surprise | 5 |
-| 💚 | Friendship | 350 |
-| 🩵 | Family | 350 |
-| 💜 | Lust / Desire | 2500 |
-| 🖤 | Hatred / Fear | 1000 |
-| 🤍 | Purity | 1000 |
+| Heart | Emotion       | Ecru |
+| ----- | ------------- | ---: |
+| ❤️    | Love          | 5000 |
+| 🩷    | Affection     | 1000 |
+| 💛    | Surprise      |    5 |
+| 💚    | Friendship    |  350 |
+| 🩵    | Family        |  350 |
+| 💜    | Lust / Desire | 2500 |
+| 🖤    | Hatred / Fear | 1000 |
+| 🤍    | Purity        | 1000 |
 
 Ecru is used to progress through witch ranks
 
@@ -173,7 +173,7 @@ Diary entries are presented as interactive postcards with editable text, saved s
 ### Animation Details
 
 ![Sugar Heart preview](/public/images/postcard_back.png)
-
+![Sugar Heart preview](/public/images/animation.gif)
 
 **Stack:** GSAP, CSS transforms, React refs, Tailwind CSS
 

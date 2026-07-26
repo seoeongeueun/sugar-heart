@@ -77,6 +77,10 @@ The main screen is built around a custom heart pendant from Sugar Sugar Rune ren
 - Derives particle color from the currently selected diary heart, connecting application state to the 3D scene.
 - Uses React Three Fiber for declarative scene composition while still applying low-level Three.js controls where direct mesh/material mutation is more efficient.
 
+### Test Account
+- account: seongeunp0125@gmail.com
+- pw: testuser01
+
 ### Gesture and Spell Unlock
 
 ![Sugar Heart preview](/public/images/spell.png)

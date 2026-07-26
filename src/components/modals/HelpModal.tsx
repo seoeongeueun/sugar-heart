@@ -5,7 +5,7 @@ import {
 } from "@/lib";
 import { HEART_LIST } from "@/shared";
 import { ModalSimple } from "@/ui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type HelpModalProps = {
   isAbout?: boolean;
@@ -25,10 +25,17 @@ export default function HelpModal({
     "idle" | "requesting" | "granted" | "denied"
   >("idle");
   const [cameraAccessMessage, setCameraAccessMessage] = useState("");
+  const [isImageReady, setIsImageReady] = useState(false);
 
+  const currentPage = helpPages[pageIndex];
   const heartColor = HEART_LIST[pageIndex % HEART_LIST.length].color;
+  const imageSrc = currentPage.image;
   const isLastPage = pageIndex === helpPages.length - 1;
   const shouldShowCameraAccessButton = pageIndex === 1;
+
+  useEffect(() => {
+    setIsImageReady(false);
+  }, [imageSrc]);
 
   const handleCameraAccessRequest = async () => {
     try {
@@ -47,10 +54,10 @@ export default function HelpModal({
 
   return (
     <ModalSimple
-      key={helpPages[pageIndex].page}
-      title={helpPages[pageIndex].title}
+      key={currentPage.page}
+      title={currentPage.title}
       heartColor={heartColor}
-      description={(isAbout ? "" : helpPages[pageIndex].description) ?? ""}
+      description={(isAbout ? "" : currentPage.description) ?? ""}
       footer={
         <>
           {!isAbout && (
@@ -88,15 +95,28 @@ export default function HelpModal({
       onClose={onClose}
     >
       <div className="flex flex-col items-center gap-8 text-lg font-sonmat leading-8 px-2 text-center">
-        {helpPages[pageIndex].image && (
-          <img
-            src={helpPages[pageIndex].image}
-            alt={helpPages[pageIndex].title}
-            className="rounded black-button max-h-50 object-contain w-fit"
-          />
+        {imageSrc && (
+          <div
+            className={`rounded black-button h-50 max-w-full overflow-hidden ${
+              isImageReady ? "" : "bg-gray-400/60 animate-pulse"
+            }`}
+            style={{
+              width: `min(100%, ${12.5 * currentPage.imageAspectRatio}rem)`,
+            }}
+          >
+            <img
+              src={imageSrc}
+              alt={currentPage.title}
+              onLoad={() => setIsImageReady(true)}
+              onError={() => setIsImageReady(true)}
+              className={`h-full w-full object-contain transition-opacity duration-100 ${
+                isImageReady ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          </div>
         )}
         <p className="whitespace-pre-line px-2 text-[1.8rem]">
-          {helpPages[pageIndex].content}
+          {currentPage.content}
         </p>
         {shouldShowCameraAccessButton && (
           <div className="flex flex-col items-center gap-2">
